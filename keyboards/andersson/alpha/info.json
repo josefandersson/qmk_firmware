@@ -1,0 +1,12 @@
+{
+    "keyboard_name": "Andersson Alpha",
+    "manufacturer": "Andersson",
+    "url": "https://git.josf.dev/josefandersson/keyboard",
+    "maintainer": "qmk",
+    "processor": "atmega32u4",
+    "usb": {
+        "vid": "0x1488",
+        "pid": "0x1488",
+        "device_version": "0.0.1"
+    }
+}
