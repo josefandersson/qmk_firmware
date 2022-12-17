@@ -37,6 +37,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE        5
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_TERM 180
+#define TAPPING_FORCE_HOLD
+#define PERMISSIVE_HOLD
 
 #define USE_I2C
 // #define LED_CAPS_LOCK_PIN D1
