@@ -55,17 +55,19 @@
 #define SV_PARAGRAPH KC_GRAVE
 // ´
 #define SV_GRAVE KC_EQUAL
+// &
+#define SV_AND S(KC_6)
+// #
+#define SV_HASH S(KC_3)
+// !
+#define SV_EXCLM S(KC_1)
+// %
+#define SV_PERCENT S(KC_5)
 
-
-#define HOME_A LGUI_T(KC_A)
-#define HOME_S LALT_T(KC_S)
-#define HOME_D LCTL_T(KC_D)
-#define HOME_F LSFT_T(KC_F)
-
-#define HOME_J RSFT_T(KC_J)
-#define HOME_K RCTL_T(KC_K)
-#define HOME_L LALT_T(KC_L)
-#define HOME_OE RGUI_T(SV_OE)
+#define H1(x) LSFT_T(x)
+#define H2(x) LCTL_T(x)
+#define H3(x) LALT_T(x)
+#define H4(x) LGUI_T(x)
 
 enum keyboard_layers {
     _DEFAULT = 0,
@@ -77,45 +79,45 @@ enum keyboard_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // -------------------------------------------------------------------------------------------------------------------------
     // |  ESC  |  1  |  2  |   3   |  4   |  5  |                                    |  6  |  7   |   8   |  9  |  0  |       |
-    // |  TAB  |  Q  |  W  |   E   |  R   |  T  |                                    |  Y  |  U   |   I   |  O  |  P  |   Å   |
+    // |  ESC  |  Q  |  W  |   E   |  R   |  T  |                                    |  Y  |  U   |   I   |  O  |  P  |   Å   |
     // |  TAB  |  A  |  S  |   D   |  F   |  G  |                                    |  H  |  J   |   K   |  L  |  Ö  |   Ä   |
     // | SHIFT |  Z  |  X  |   C   |  V   |  B  | LCTRL | RETURN |  |  RALT  | RCTRL |  N  |  M   |  ,;   |  .: |  -  | SHIFT |
-    //                     | LCTRL | LWIN | L 1 | SPACE | LSHIFT |  | RETURN | BKSPC | L 1 | RWIN | RCTRL |
+    //                     | LCTRL | LWIN | L 1 | SPACE | LSHIFT |  | RETURN | BKSPC | L 2 | RWIN | RCTRL |
 
     [_DEFAULT] = LAYOUT(
-        KC_ESC,  KC_1,   KC_2,   KC_3,    KC_4,    KC_5,                                            KC_6,       KC_7,    KC_8,    KC_9,   KC_0,    KC_MUTE,
-        KC_TAB,  KC_Q,   KC_W,   KC_E,    KC_R,    KC_T,                                            KC_Y,       KC_U,    KC_I,    KC_O,   KC_P,    SV_AO,
-        KC_TAB,  HOME_A, HOME_S, HOME_D,  HOME_F,  KC_G,                                            KC_H,       HOME_J,  HOME_K,  HOME_L, HOME_OE, SV_AE,
-        KC_LSFT, KC_Z,   KC_X,   KC_C,    KC_V,    KC_B,       KC_LCTL, KC_ENT,    KC_NO,  KC_NO,   KC_N,       KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_MPLY,
-                                 KC_LCTL, KC_LGUI, MO(_LOWER), KC_SPC,  KC_0,      KC_ENT, KC_BSPC, MO(_LOWER), KC_RGUI, KC_RALT
+        KC_ESC,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                                            KC_6,       KC_7,     KC_8,     KC_9,     KC_0,      KC_MUTE,
+        KC_TAB,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                                            KC_Y,       KC_U,     KC_I,     KC_O,     KC_P,      SV_AO,
+        KC_TAB,  H4(KC_A), H3(KC_S), H2(KC_D), H1(KC_F), KC_G,                                            KC_H,       H1(KC_J), H2(KC_K), H3(KC_L), H4(SV_OE), SV_AE,
+        KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,       KC_LCTL, KC_ENT,    KC_NO,  KC_NO,   KC_N,       KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,   KC_MPLY,
+                                    KC_LCTL,   KC_LGUI,  MO(_LOWER), KC_SPC,  KC_CAPS,   KC_ENT, KC_BSPC, MO(_RAISE), KC_RGUI,  KC_RALT
+    ),
+
+    // --------------------------------------------------------------------------------------------
+    // |   | F1 | F2 | F3 | F4 | F5 |                                 | F6 | F7 | F8 | F9 | F10 | F11 |
+    // |   | 1  | 2  | 3  | 4  | 5  |                                 | 6  | 7  | 8  | 9  |  0  | F12 |
+    // |   | '  | <  | (  | {  | [  |                                 | ?  | &  | ~  |    |     |     |
+    // |   | =  | >  | )  | }  | ]  | VOL D |  VOL U |  | PREV | NEXT | /  | ^  | §  |    |     |     |
+    //               |    |    |    | SPACE |  MUTE  |  |      | DEL  |    |    |    |
+    [_LOWER] = LAYOUT(
+        _______, KC_F1,          KC_F2,       KC_F3,       KC_F4,        KC_F5,                                          KC_F6,       KC_F7,       KC_F8,        KC_F9,       KC_F10,      KC_F11,
+        _______, KC_1,           KC_2,        KC_3,        KC_4,         KC_5,                                           KC_6,        KC_7,        KC_8,         KC_9,        KC_0,        KC_F12,
+        _______, H4(SV_SINGLEQ), H3(SV_LESS), H2(SV_LPAR), H1(SV_LBRAC), SV_LBRAK,                                       SV_QUESTION, H1(SV_AND),  H2(SV_TILDE), H3(_______), H4(_______), _______,
+        _______, SV_EQUAL,       SV_GREA,     SV_RPAR,     SV_RBRAC,     SV_RBRAK, KC_VOLD, KC_VOLU,   _______, _______, SV_SLASH,    SV_EXPONENT, SV_PARAGRAPH, _______,     _______,     _______,
+                                              _______,     _______,       _______, _______, KC_MUTE,   _______, KC_DEL,  _______,     _______,     _______
     ),
 
     // --------------------------------------------------------------------------------------------------------------------
-    // |     |  !  |  @  |  #  |  $  |  %  |                                       |  &  |  `   |   ^   |  ~   |  §   |     |
-    // |     | 1!  | 2@  | 3#  | 4$  | 5%  |                                       | 6&  |  7`  |  8^   |  9~  |  0§  |     |
-    // |     | '"  | <*  | (|  |  {  |  [  |                                       | ?+  | LARR | UARR  | RARR | PGUP |     |
-    // |     | =´  |  >  |  )  |  }  |  ]  | VOL D |  VOL U       |  | PREV | NEXT | /\  | HOME | DARR  | END  | PGDN |     |
-    //                   |     |     |     | SPACE | PLPA -> MUTE |  |      | DEL  |     |      |       |
-    [_LOWER] = LAYOUT(
-        _______, S(KC_1), SV_AT, S(KC_3), SV_DOLLAR, S(KC_5),                                         S(KC_6), SV_BACKTICK, SV_EXPONENT, SV_TILDE, SV_PARAGRAPH, XXXXXXX,
-        _______, KC_1,    KC_2,  KC_3,    KC_4,      KC_5,                                            KC_6,    KC_7,        KC_8,        KC_9,     KC_0,         XXXXXXX,
-        _______, KC_A,    KC_S,  KC_D,    SV_LBRAC,  SV_LBRAK,                                        _______, KC_LEFT,     KC_UP,       KC_RIGHT, KC_PGUP,      XXXXXXX,
-        _______, KC_Z,    KC_X,  KC_C,    SV_RBRAC,  SV_RBRAK, KC_VOLD, KC_VOLU,    KC_MPRV, KC_MNXT, _______, KC_HOME,     KC_DOWN,     KC_END,   KC_PGDN,      _______,
-                                 _______, _______,   _______,  _______, KC_MUTE,    _______, KC_DEL,  _______, _______,     _______
-    ),
-
-    // ------------------------------------------------------------------------------------------------------------
-    // |  | F1 | F2 | F3 | F4 | F5 |                   | F6 | F7 | F8 | F9 | F10 | F11 |
-    // |  |    |    |    |    |    |                   |    |    |    |    |     | F12 |
-    // |  |    |    |    |    |    |                   |    |    |    |    |     | F12 |
-    // |  |    |    |    |    |    |   |   |  |   |    |    |    |    |    |     |     |
-    //              |    |    |    |   |   |  |   |    |    |    |    |
+    // |     |     |     |     |     |       |                  |     |      |      |      |      |     |
+    // |     | F1  | F2  | F3  | F4  |  F5   |                  | F6  |  F7  |  F8  |  F9  | F10  | F11 |
+    // |     |  "  |  *  |  |  |  $  |   %   |                  |  +  | LARR | UARR | RARR | PGUP | F12 |
+    // |     |  ´  |  `  |  #  |  !  |   @   |   |   |  |   |   |  \  | HOME | DARR | END  | PGDN |     |
+    //                   |     |     | BKSPC |   |   |  |   |   |     |      |      |
     [_RAISE] = LAYOUT(
-        KC_ESC,  KC_1, KC_2, KC_3,    KC_4,    KC_5,                                                 KC_6,   KC_7,  KC_8,    KC_9,   KC_0,    RGB_TOG,
-        KC_TAB,  KC_Q, KC_W, KC_E,    KC_R,    KC_T,                                                 KC_Y,   KC_U,  KC_I,    KC_O,   KC_P,    RGB_M_T,
-        KC_TAB,  KC_A, KC_S, KC_D,    KC_F,    KC_G,                                                 KC_H,   KC_J,  KC_K,    KC_L,   KC_0,    KC_0,
-        KC_LSFT, KC_Z, KC_X, KC_C,    KC_V,    KC_B, KC_LCTL, KC_RETURN,    KC_0,      KC_0,         KC_N,   KC_M,  KC_COMM, KC_DOT, KC_SLSH, KC_RSFT,
-                             KC_LCTL, KC_LGUI, KC_0, KC_SPC, KC_0,          KC_RETURN, KC_BACKSPACE, KC_0, KC_RGUI, KC_RALT
+        _______, _______,        _______,     _______,  _______,  _______,                                          _______,      _______, _______, _______,  _______, _______,
+        _______, KC_F1,          KC_F2,       KC_F3,    KC_F4,    KC_F5,                                            KC_F6,        KC_F7,   KC_F8,   KC_F9,    KC_F10,  KC_F11,
+        _______, H4(SV_DOUBLEQ), H3(KC_S),    H2(KC_D), H1(KC_F), SV_PERCENT,                                       SV_PLUS,      KC_LEFT, KC_UP,   KC_RIGHT, KC_PGDN, KC_F12,
+        _______, SV_GRAVE,       SV_BACKTICK, SV_HASH,  SV_EXCLM, SV_AT,      _______, _______,   KC_MPRV, KC_MNXT, SV_BACKSLASH, KC_HOME, KC_DOWN, KC_END,   KC_PGDN, _______,
+                                              _______,  _______,  KC_BSPC,    _______, _______,   _______, _______, _______,      _______, _______
     ),
 };
 // clang-format on
