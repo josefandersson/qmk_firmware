@@ -99,11 +99,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // |   | =  | >  | )  | }  | ]  | VOL D |  VOL U |  | PREV | NEXT | /  | ^  | §  |    |     |     |
     //               |    |    |    | SPACE |  MUTE  |  |      | DEL  |    |    |    |
     [_LOWER] = LAYOUT(
-        _______, KC_F1,          KC_F2,       KC_F3,       KC_F4,        KC_F5,                                          KC_F6,       KC_F7,       KC_F8,        KC_F9,       KC_F10,      KC_F11,
-        _______, KC_1,           KC_2,        KC_3,        KC_4,         KC_5,                                           KC_6,        KC_7,        KC_8,         KC_9,        KC_0,        KC_F12,
-        _______, H4(SV_SINGLEQ), H3(SV_LESS), H2(SV_LPAR), H1(SV_LBRAC), SV_LBRAK,                                       SV_QUESTION, H1(SV_AND),  H2(SV_TILDE), H3(_______), H4(_______), _______,
-        _______, SV_EQUAL,       SV_GREA,     SV_RPAR,     SV_RBRAC,     SV_RBRAK, KC_VOLD, KC_VOLU,   _______, _______, SV_SLASH,    SV_EXPONENT, SV_PARAGRAPH, _______,     _______,     _______,
-                                              _______,     _______,       _______, _______, KC_MUTE,   _______, KC_DEL,  _______,     _______,     _______
+        _______, KC_F1,      KC_F2,   KC_F3,   KC_F4,    KC_F5,                                          KC_F6,       KC_F7,       KC_F8,        KC_F9,   KC_F10,  KC_F11,
+        _______, KC_1,       KC_2,    KC_3,    KC_4,     KC_5,                                           KC_6,        KC_7,        KC_8,         KC_9,    KC_0,    KC_F12,
+        _______, SV_SINGLEQ, SV_LESS, SV_LPAR, SV_LBRAC, SV_LBRAK,                                       SV_QUESTION, SV_AND,      SV_TILDE,     _______, _______, _______,
+        _______, SV_EQUAL,   SV_GREA, SV_RPAR, SV_RBRAC, SV_RBRAK, KC_VOLD, KC_VOLU,   _______, _______, SV_SLASH,    SV_EXPONENT, SV_PARAGRAPH, _______, _______, _______,
+                                      _______, _______,  _______,  _______, KC_MUTE,   _______, KC_DEL,  _______,     _______,     _______
     ),
 
     // --------------------------------------------------------------------------------------------------------------------
@@ -113,11 +113,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // |     |  ´  |  `  |  #  |  !  |   @   |   |   |  |   |   |  \  | HOME | DARR | END  | PGDN |     |
     //                   |     |     | BKSPC |   |   |  |   |   |     |      |      |
     [_RAISE] = LAYOUT(
-        _______, _______,        _______,     _______,  _______,  _______,                                          _______,      _______, _______, _______,  _______, _______,
-        _______, KC_F1,          KC_F2,       KC_F3,    KC_F4,    KC_F5,                                            KC_F6,        KC_F7,   KC_F8,   KC_F9,    KC_F10,  KC_F11,
-        _______, H4(SV_DOUBLEQ), H3(KC_S),    H2(KC_D), H1(KC_F), SV_PERCENT,                                       SV_PLUS,      KC_LEFT, KC_UP,   KC_RIGHT, KC_PGDN, KC_F12,
-        _______, SV_GRAVE,       SV_BACKTICK, SV_HASH,  SV_EXCLM, SV_AT,      _______, _______,   KC_MPRV, KC_MNXT, SV_BACKSLASH, KC_HOME, KC_DOWN, KC_END,   KC_PGDN, _______,
-                                              _______,  _______,  KC_BSPC,    _______, _______,   _______, _______, _______,      _______, _______
+        _______, _______,    _______,     _______, _______,  _______,                                          _______,      _______, _______, _______,  _______, _______,
+        _______, KC_F1,      KC_F2,       KC_F3,   KC_F4,    KC_F5,                                            KC_F6,        KC_F7,   KC_F8,   KC_F9,    KC_F10,  KC_F11,
+        _______, SV_DOUBLEQ, KC_S,        KC_D,    KC_F,     SV_PERCENT,                                       SV_PLUS,      KC_LEFT, KC_UP,   KC_RIGHT, KC_PGDN, KC_F12,
+        _______, SV_GRAVE,   SV_BACKTICK, SV_HASH, SV_EXCLM, SV_AT,      _______, _______,   KC_MPRV, KC_MNXT, SV_BACKSLASH, KC_HOME, KC_DOWN, KC_END,   KC_PGDN, _______,
+                                          _______, _______,  KC_BSPC,    _______, _______,   _______, _______, _______,      _______, _______
     ),
 };
 // clang-format on
