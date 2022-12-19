@@ -85,11 +85,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                     | LCTRL | LWIN | L 1 | SPACE | LSHIFT |  | RETURN | BKSPC | L 2 | RWIN | RCTRL |
 
     [_DEFAULT] = LAYOUT(
-        KC_ESC,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                                            KC_6,       KC_7,     KC_8,     KC_9,     KC_0,      KC_MUTE,
-        KC_TAB,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                                            KC_Y,       KC_U,     KC_I,     KC_O,     KC_P,      SV_AO,
-        KC_TAB,  H4(KC_A), H3(KC_S), H2(KC_D), H1(KC_F), KC_G,                                            KC_H,       H1(KC_J), H2(KC_K), H3(KC_L), H4(SV_OE), SV_AE,
-        KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,       KC_LCTL, KC_ENT,    KC_NO,  KC_NO,   KC_N,       KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,   KC_MPLY,
-                                    KC_LCTL,   KC_LGUI,  MO(_LOWER), KC_SPC,  KC_CAPS,   KC_ENT, KC_BSPC, MO(_RAISE), KC_RGUI,  KC_RALT
+        KC_ESC,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                                             KC_6,       KC_7,     KC_8,     KC_9,     KC_0,      KC_MUTE,
+        KC_ESC,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                                             KC_Y,       KC_U,     KC_I,     KC_O,     KC_P,      SV_AO,
+        KC_TAB,  H4(KC_A), H3(KC_S), H2(KC_D), H1(KC_F), KC_G,                                             KC_H,       H1(KC_J), H2(KC_K), H3(KC_L), H4(SV_OE), SV_AE,
+        KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,       KC_LCTL, KC_ENT,    G(KC_1), G(KC_1), KC_N,       KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,   KC_MPLY,
+                                    KC_LCTL,   KC_LGUI,  MO(_LOWER), KC_SPC,  KC_CAPS,   KC_ENT,  KC_BSPC, MO(_RAISE), KC_RGUI,  KC_RALT
     ),
 
     // --------------------------------------------------------------------------------------------
