@@ -56,3 +56,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGB_MATRIX_LED_COUNT 1 // Number of LEDs
     #define RGB_MATRIX_SPLIT { 0, 1 }
 #endif
+
+#define MK_3_SPEED
+#define MK_MOMENTARY_ACCEL
