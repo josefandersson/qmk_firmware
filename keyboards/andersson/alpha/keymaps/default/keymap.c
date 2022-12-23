@@ -141,8 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 void td_raise_mouse_tap(qk_tap_dance_state_t *state, void *user_data) {
-    switch (state->count)
-    {
+    switch (state->count) {
         case 1:
             layer_on(_RAISE);
             break;
@@ -152,8 +151,7 @@ void td_raise_mouse_tap(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void td_raise_mouse_finish(qk_tap_dance_state_t *state, void *user_data)
-{
+void td_raise_mouse_finish(qk_tap_dance_state_t *state, void *user_data) {
     layer_clear();
 }
 
