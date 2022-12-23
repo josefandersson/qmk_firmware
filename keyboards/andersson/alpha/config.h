@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DIODE_DIRECTION COL2ROW
 
 /* define if matrix has ghost (lacks anti-ghosting diodes) */
-//#define MATRIX_HAS_GHOST
+// #define MATRIX_HAS_GHOST
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE        5
@@ -45,16 +45,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_I2C
 // #define LED_CAPS_LOCK_PIN D1
 
-// #ifdef OLED_ENABLE
-// #    define OLED_DISPLAY_128X64
-// #    define SPLIT_OLED_ENABLE
-// #endif
+#ifdef OLED_ENABLE
+    #define OLED_DISPLAY_128X64
+    #define SPLIT_OLED_ENABLE
+#endif
 
-// /* RGB light support */
 #ifdef RGBLIGHT_ENABLE
     #define RGB_DI_PIN F4
-    #define RGB_MATRIX_LED_COUNT 1 // Number of LEDs
-    #define RGB_MATRIX_SPLIT { 0, 1 }
+    #define RGB_MATRIX_LED_COUNT 60
+    #define RGB_MATRIX_SPLIT { 30, 30 }
 #endif
 
 #define MOUSEKEY_DELAY          0

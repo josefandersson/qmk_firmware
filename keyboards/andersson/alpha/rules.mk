@@ -1,8 +1,7 @@
 MCU = atmega32u4
 BOOTLOADER = caterina
 
-# OLED_ENABLE = yes
-# OLED_DRIVER = SSD1306     # Enables the use of OLED displays
+OLED_ENABLE = yes
 TAP_DANCE_ENABLE = yes
 MOUSEKEY_ENABLE = yes
 EXTRAKEY_ENABLE = yes

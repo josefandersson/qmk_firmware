@@ -158,3 +158,39 @@ void td_raise_mouse_finish(qk_tap_dance_state_t *state, void *user_data) {
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_RAI_MOU] = ACTION_TAP_DANCE_FN_ADVANCED(td_raise_mouse_tap, NULL, td_raise_mouse_finish),
 };
+
+#ifdef OLED_ENABLE
+    oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+        if (is_keyboard_left())
+            return OLED_ROTATION_180;
+
+        return rotation;
+    }
+
+    bool oled_task_user(void) {
+        switch (get_highest_layer(layer_state)) {
+            case _DEFAULT:
+                oled_write_ln_P(PSTR("Default"), false);
+                break;
+            case _LOWER:
+                oled_write_ln_P(PSTR("Lower"), false);
+                break;
+            case _RAISE:
+                oled_write_ln_P(PSTR("Raise"), false);
+                break;
+            case _MOUSE:
+                oled_write_ln_P(PSTR("Mouse"), false);
+                break;
+        }
+
+        oled_write_ln_P(PSTR(""), false);
+
+        // Host Keyboard LED Status
+        led_t led_state = host_keyboard_led_state();
+        oled_write_P(led_state.num_lock ? PSTR("NUM ") : PSTR("    "), false);
+        oled_write_P(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
+        oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
+
+        return false;
+    }
+#endif
