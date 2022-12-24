@@ -69,10 +69,17 @@
 #define H4(x) LGUI_T(x)
 
 enum keyboard_layers {
-    _DEFAULT = 0,
-    _LOWER   = 1,
-    _RAISE   = 2,
-    _MOUSE   = 3,
+    _QWERTY = 0,
+    _COLEMAK,
+    _LOWER,
+    _RAISE,
+    _MOUSE,
+};
+
+int current_layout = _QWERTY;
+
+enum custom_keycodes {
+    ROTATE_LAYOUT = SAFE_RANGE,
 };
 
 enum tap_dances {
@@ -88,12 +95,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // | SHIFT |  Z  |  X  |   C   |  V   |  B  | LCTRL | RETURN |  |  RALT  | RCTRL |  N  |  M   |  ,;   |  .: |  -  | SHIFT |
     //                     | LCTRL | LWIN | L 1 | SPACE | LSHIFT |  | RETURN | BKSPC | L 2 | RWIN | RCTRL |
 
-    [_DEFAULT] = LAYOUT(
+    [_QWERTY] = LAYOUT(
         KC_ESC,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                                                     KC_6,           KC_7,     KC_8,     KC_9,     KC_0,      KC_MUTE,
         KC_ESC,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                                                     KC_Y,           KC_U,     KC_I,     KC_O,     KC_P,      SV_AO,
         KC_TAB,  H4(KC_A), H3(KC_S), H2(KC_D), H1(KC_F), KC_G,                                                     KC_H,           H1(KC_J), H2(KC_K), H3(KC_L), H4(SV_OE), SV_AE,
         KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,       KC_LCTL, KC_ENT,            G(KC_1), G(KC_1), KC_N,           KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,   KC_MPLY,
-                                    KC_LCTL,   KC_LGUI,  MO(_LOWER), KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, TD(TD_RAI_MOU), KC_RGUI,  KC_RALT
+                                    KC_LCTL,   KC_LGUI,  MO(_LOWER), KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, TD(TD_RAI_MOU), KC_RGUI,  XXXXXXX
+    ),
+
+    // -------------------------------------------------------------------------------------------------------------------------
+    // |  ESC  |  1  |  2  |   3   |  4   |  5  |                                    |  6  |  7   |   8   |  9  |  0  |       |
+    // |  ESC  |  Q  |  W  |   F   |  P   |  G  |                                    |  J  |  L   |   U   |  Y  |  Ö  |   Å   |
+    // |  TAB  |  A  |  R  |   S   |  T   |  D  |                                    |  H  |  N   |   E   |  I  |  O  |   Ä   |
+    // | SHIFT |  Z  |  X  |   C   |  V   |  B  | LCTRL | RETURN |  |  RALT  | RCTRL |  K  |  M   |  ,;   |  .: |  -  | SHIFT |
+    //                     | LCTRL | LWIN | L 1 | SPACE | LSHIFT |  | RETURN | BKSPC | L 2 | RWIN | RCTRL |
+
+    [_COLEMAK] = LAYOUT(
+        KC_ESC,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                                                     KC_6,           KC_7,     KC_8,     KC_9,     KC_0,      KC_MUTE,
+        KC_ESC,  KC_Q,     KC_W,     KC_F,     KC_P,     KC_G,                                                     KC_J,           KC_L,     KC_U,     KC_Y,     SV_OE,      SV_AO,
+        KC_TAB,  H4(KC_A), H3(KC_R), H2(KC_S), H1(KC_T), KC_D,                                                     KC_H,           H1(KC_N), H2(KC_E), H3(KC_I), H4(KC_O), SV_AE,
+        KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,       KC_LCTL, KC_ENT,            G(KC_1), G(KC_1), KC_K,           KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,   KC_MPLY,
+                                    KC_LCTL,   KC_LGUI,  MO(_LOWER), KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, TD(TD_RAI_MOU), KC_RGUI,  XXXXXXX
     ),
 
     // --------------------------------------------------------------------------------------------
@@ -120,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,    _______,     _______, _______,  _______,                                               _______,      _______, _______, _______,  _______, _______,
         _______, KC_F1,      KC_F2,       KC_F3,   KC_F4,     KC_F5,                                                KC_F6,        KC_F7,   KC_F8,   KC_F9,    KC_F10,  KC_F11,
         _______, SV_DOUBLEQ, SV_ASTERIX,  SV_PIPE, SV_DOLLAR, SV_PERCENT,                                           SV_PLUS,      KC_LEFT, KC_UP,   KC_RIGHT, KC_PGUP, KC_F12,
-        _______, SV_GRAVE,   SV_BACKTICK, SV_HASH, SV_EXCLM,  SV_AT,      _______, _______,       KC_MPRV, KC_MNXT, SV_BACKSLASH, KC_HOME, KC_DOWN, KC_END,   KC_PGDN, _______,
+        _______, SV_GRAVE,   SV_BACKTICK, SV_HASH, SV_EXCLM,  SV_AT,      _______, _______,       KC_MPRV, KC_MNXT, SV_BACKSLASH, KC_HOME, KC_DOWN, KC_END,   KC_PGDN, ROTATE_LAYOUT,
                                           _______, _______,   KC_BSPC,    _______, _______,       _______, _______, _______,      _______, _______
     ),
 
@@ -132,13 +154,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                   |     |     | BKSPC |   |   |  |   |   |     |      |      |
     [_MOUSE] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, KC_BTN3, KC_BTN2, KC_BTN1, XXXXXXX,                                        KC_BTN4, KC_MS_L, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_BTN5, KC_WH_U, KC_MS_D, KC_WH_D, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN3, XXXXXXX,                                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, KC_ACL2, KC_ACL1, KC_ACL0, KC_BTN1, XXXXXXX,                                        KC_BTN4, KC_MS_L, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN2, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_BTN5, KC_WH_U, KC_MS_D, KC_WH_D, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
     ),
 };
 // clang-format on
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case ROTATE_LAYOUT:
+            if (record->event.pressed) {
+                current_layout = current_layout == _QWERTY ? _COLEMAK : _QWERTY;
+                default_layer_set(1UL << current_layout);
+                return false;
+            }
+            break;
+    }
+    return true;
+}
 
 void td_raise_mouse_tap(qk_tap_dance_state_t *state, void *user_data) {
     switch (state->count) {
@@ -169,8 +204,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
     bool oled_task_user(void) {
         switch (get_highest_layer(layer_state)) {
-            case _DEFAULT:
-                oled_write_ln_P(PSTR("Default"), false);
+            case _QWERTY:
+                oled_write_ln_P(current_layout == _QWERTY ? PSTR("QWERTY") : PSTR("Colemak"), false);
                 break;
             case _LOWER:
                 oled_write_ln_P(PSTR("Lower"), false);
