@@ -70,7 +70,7 @@
 
 enum keyboard_layers {
     _QWERTY = 0,
-    _COLEMAK,
+    _COLEMAKDH,
     _LOWER,
     _RAISE,
     _MOUSE,
@@ -105,16 +105,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // -------------------------------------------------------------------------------------------------------------------------
     // |  ESC  |  1  |  2  |   3   |  4   |  5  |                                    |  6  |  7   |   8   |  9  |  0  |       |
-    // |  ESC  |  Q  |  W  |   F   |  P   |  G  |                                    |  J  |  L   |   U   |  Y  |  Ö  |   Å   |
-    // |  TAB  |  A  |  R  |   S   |  T   |  D  |                                    |  H  |  N   |   E   |  I  |  O  |   Ä   |
-    // | SHIFT |  Z  |  X  |   C   |  V   |  B  | LCTRL | RETURN |  |  RALT  | RCTRL |  K  |  M   |  ,;   |  .: |  -  | SHIFT |
+    // |  ESC  |  Q  |  W  |   F   |  P   |  B  |                                    |  J  |  L   |   U   |  Y  |  Ö  |   Å   |
+    // |  TAB  |  A  |  R  |   S   |  T   |  G  |                                    |  M  |  N   |   E   |  I  |  O  |   Ä   |
+    // | SHIFT |  Z  |  X  |   C   |  D   |  V  | LCTRL | RETURN |  |  RALT  | RCTRL |  K  |  H   |  ,;   |  .: |  -  | SHIFT |
     //                     | LCTRL | LWIN | L 1 | SPACE | LSHIFT |  | RETURN | BKSPC | L 2 | RWIN | RCTRL |
 
-    [_COLEMAK] = LAYOUT(
+    [_COLEMAKDH] = LAYOUT(
         KC_ESC,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                                                     KC_6,           KC_7,     KC_8,     KC_9,     KC_0,      KC_MUTE,
-        KC_ESC,  KC_Q,     KC_W,     KC_F,     KC_P,     KC_G,                                                     KC_J,           KC_L,     KC_U,     KC_Y,     SV_OE,      SV_AO,
-        KC_TAB,  H4(KC_A), H3(KC_R), H2(KC_S), H1(KC_T), KC_D,                                                     KC_H,           H1(KC_N), H2(KC_E), H3(KC_I), H4(KC_O), SV_AE,
-        KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,       KC_LCTL, KC_ENT,            G(KC_1), G(KC_1), KC_K,           KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,   KC_MPLY,
+        KC_ESC,  KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,                                                     KC_J,           KC_L,     KC_U,     KC_Y,     SV_OE,      SV_AO,
+        KC_TAB,  H4(KC_A), H3(KC_R), H2(KC_S), H1(KC_T), KC_G,                                                     KC_M,           H1(KC_N), H2(KC_E), H3(KC_I), H4(KC_O), SV_AE,
+        KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,       KC_LCTL, KC_ENT,            G(KC_1), G(KC_1), KC_K,           KC_H,     KC_COMM,  KC_DOT,   KC_SLSH,   KC_MPLY,
                                     KC_LCTL,   KC_LGUI,  MO(_LOWER), KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, TD(TD_RAI_MOU), KC_RGUI,  XXXXXXX
     ),
 
@@ -166,7 +166,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case ROTATE_LAYOUT:
             if (record->event.pressed) {
-                current_layout = current_layout == _QWERTY ? _COLEMAK : _QWERTY;
+                current_layout = current_layout == _QWERTY ? _COLEMAKDH : _QWERTY;
                 default_layer_set(1UL << current_layout);
                 return false;
             }
