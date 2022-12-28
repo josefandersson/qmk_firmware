@@ -102,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                     |       | LWIN | L 1 | SPACE | LSHIFT |  | RETURN | BKSPC | L 2 | RWIN |       |
 
     [_QWERTY] = LAYOUT(
-        KC_ESC,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                                                     KC_6,           KC_7,     KC_8,     KC_9,     KC_0,      KC_MUTE,
+        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                                                  XXXXXXX,        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,
         KC_ESC,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                                                     KC_Y,           KC_U,     KC_I,     KC_O,     KC_P,      SV_AO,
         KC_TAB,  H4(KC_A), H3(KC_S), H2(KC_D), H1(KC_F), KC_G,                                                     KC_H,           H1(KC_J), H2(KC_K), H3(KC_L), H4(SV_OE), SV_AE,
         KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,       KC_LCTL, KC_ENT,            G(KC_1), G(KC_1), KC_N,           KC_M,     KC_COMM,  KC_DOT,   SV_DASH,   KC_MPLY,
@@ -117,10 +117,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                     | LCTRL | LWIN | LOW | SPACE | LSHIFT |  | RETURN | BKSPC | RAI | RWIN | RCTRL |
 
     [_COLEMAKDH] = LAYOUT(
-        KC_ESC,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                                                     KC_6,           KC_7,     KC_8,     KC_9,     KC_0,      KC_MUTE,
-        KC_ESC,  KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,                                                     KC_J,           KC_L,     KC_U,     KC_Y,     SV_OE,      SV_AO,
+        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                                                  XXXXXXX,        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+        KC_ESC,  KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,                                                     KC_J,           KC_L,     KC_U,     KC_Y,     SV_OE,    SV_AO,
         KC_TAB,  H4(KC_A), H3(KC_R), H2(KC_S), H1(KC_T), KC_G,                                                     KC_M,           H1(KC_N), H2(KC_E), H3(KC_I), H4(KC_O), SV_AE,
-        KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,       KC_LCTL, KC_ENT,            G(KC_1), G(KC_1), KC_K,           KC_H,     KC_COMM,  KC_DOT,   SV_DASH,   KC_MPLY,
+        KC_LSFT, KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,       KC_LCTL, KC_ENT,            G(KC_1), G(KC_1), KC_K,           KC_H,     KC_COMM,  KC_DOT,   SV_DASH,  KC_MPLY,
                                      KC_LCTL,  KC_LGUI,  MO(_LOWER), KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, TD(TD_RAI_MOU), KC_RGUI,  XXXXXXX
     ),
 
@@ -179,6 +179,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
     }
     return true;
+}
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case H4(KC_A):
+        case H4(KC_O):
+            return TAPPING_TERM + 70;
+        case H3(KC_R):
+        case H3(KC_I):
+        case H2(KC_S):
+        case H2(KC_E):
+        case H1(KC_T):
+        case H1(KC_N):
+        default:
+            return TAPPING_TERM;
+    }
 }
 
 void td_raise_mouse_tap(qk_tap_dance_state_t *state, void *user_data) {
