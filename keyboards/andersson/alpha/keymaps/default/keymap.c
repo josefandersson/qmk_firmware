@@ -141,14 +141,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // -------------------------------------------------------------------------------------------------------
     // |   |     |      |     |     |      |         #               |     |      |      |      |      |     |
     // |   | F1  |  F2  | F3  | F4  |  F5  |         #               | F6  |  F7  |  F8  |  F9  | F10  | F11 |
-    // |   |  *  | pipe |  $  |  !  |  %   |         #               | INS | LARR | UARR | RARR | PGUP | F12 |
-    // |   |  ^  |  ~   |  &  |  @  |  #   |   |   | # | PREV | NEXT |     | HOME | DARR | END  | PGDN | LAY |
+    // |   |  *  | pipe |  &  |  !  |  %   |         #               | INS | LARR | UARR | RARR | PGUP | F12 |
+    // |   |  ^  |  ~   |  $  |  #  |  @   |   |   | # | PREV | NEXT |     | HOME | DARR | END  | PGDN | LAY |
     //                  |     |     | BKSP |   |   | # |      |      |     |      |      |
     [_RAISE] = LAYOUT(
         _______, _______,     _______,  _______,   _______,  _______,                                              _______, _______, _______, _______,  _______, _______,
         _______, KC_F1,       KC_F2,    KC_F3,     KC_F4,    KC_F5,                                                KC_F6,   KC_F7,   KC_F8,   KC_F9,    KC_F10,  KC_F11,
-        _______, SV_ASTERIX,  SV_PIPE,  SV_DOLLAR, SV_EXCLM, SV_PERCENT,                                           KC_INS,  KC_LEFT, KC_UP,   KC_RIGHT, KC_PGUP, KC_F12,
-        _______, SV_EXPONENT, SV_TILDE, SV_AND,    SV_AT,    SV_HASH,    _______, _______,       KC_MPRV, KC_MNXT, _______, KC_HOME, KC_DOWN, KC_END,   KC_PGDN, ROTATE_LAYOUT,
+        _______, SV_ASTERIX,  SV_PIPE,  SV_AND,    SV_EXCLM, SV_PERCENT,                                           KC_INS,  KC_LEFT, KC_UP,   KC_RIGHT, KC_PGUP, KC_F12,
+        _______, SV_EXPONENT, SV_TILDE, SV_DOLLAR, SV_HASH,  SV_AT,      _______, _______,       KC_MPRV, KC_MNXT, _______, KC_HOME, KC_DOWN, KC_END,   KC_PGDN, ROTATE_LAYOUT,
                                         _______,   _______,  KC_BSPC,    _______, _______,       _______, _______, _______, _______, _______
     ),
 
