@@ -72,3 +72,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define POINTING_DEVICE_GESTURES_SCROLL_ENABLE
 #define POINTING_DEVICE_GESTURES_CURSOR_GLIDE_ENABLE
 #define MOUSE_EXTENDED_REPORT
+#define POINTING_DEVICE_AUTO_MOUSE_ENABLE

@@ -159,11 +159,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // |     |  ´  |  `  |  #  |  !  |   @   |   |   |  |   |   |  \  | HOME | DARR | END  | PGDN |     |
     //                   |     |     | BKSPC |   |   |  |   |   |     |      |      |
     [_MOUSE] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN3, XXXXXXX,                                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, KC_ACL2, KC_ACL1, KC_ACL0, KC_BTN1, XXXXXXX,                                        KC_BTN4, KC_MS_L, KC_MS_U, KC_MS_R, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN2, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, KC_BTN5, KC_WH_U, KC_MS_D, KC_WH_D, XXXXXXX, XXXXXXX,
-                                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
+        _______, _______, _______, _______, _______, _______,                                        _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, KC_BTN3, _______,                                        KC_BTN1, KC_BTN2, _______, _______, _______, _______,
+        _______, KC_ACL2, KC_ACL1, KC_ACL0, KC_BTN1, _______,                                        KC_BTN4, KC_MS_L, KC_MS_U, KC_MS_R, _______, _______,
+        _______, _______, _______, _______, KC_BTN2, _______, _______, _______,    _______, _______, KC_BTN5, KC_WH_U, KC_MS_D, KC_WH_D, _______, _______,
+                                   _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______
     ),
 };
 // clang-format on
@@ -215,6 +215,13 @@ void td_raise_mouse_finish(qk_tap_dance_state_t *state, void *user_data) {
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_RAI_MOU] = ACTION_TAP_DANCE_FN_ADVANCED(td_raise_mouse_tap, NULL, td_raise_mouse_finish),
 };
+
+#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
+    void pointing_device_init_user(void) {
+        set_auto_mouse_layer(_MOUSE);
+        set_auto_mouse_enable(true);
+    }
+#endif
 
 #ifdef OLED_ENABLE
     oled_rotation_t oled_init_user(oled_rotation_t rotation) {
