@@ -90,66 +90,66 @@ enum custom_keycodes {
 };
 
 enum tap_dances {
-    TD_RAI_MOU,
+    TD_GUI_ADJ,
 };
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // -----------------------------------------------------------------------------------------------------------------
-    // |     |     |     |     |      |     |                                    |     |      |     |     |     |      |
-    // | ESC |  Q  |  W  |  E  |  R   |  T  |                                    |  Y  |  U   |  I  |  O  |  P  |  Å   |
-    // | TAB |  A  |  S  |  D  |  F   |  G  |                                    |  H  |  J   |  K  |  L  |  Ö  |  Ä   |
-    // |     |  Z  |  X  |  C  |  V   |  B  | LCTRL | RETURN |  |  RALT  | RCTRL |  N  |  M   |  ,; |  .: |  -  | PLPA |
-    //                   |     | LWIN | L 1 | SPACE | LSHIFT |  | RETURN | BKSPC | L 2 | RWIN |     |
+    // |     |     |     |     |          |     |                                    |     |      |     |     |     |      |
+    // | ESC |  Q  |  W  |  E  |    R     |  T  |                                    |  Y  |  U   |  I  |  O  |  P  |  Å   |
+    // | TAB |  A  |  S  |  D  |    F     |  G  |                                    |  H  |  J   |  K  |  L  |  Ö  |  Ä   |
+    // |     |  Z  |  X  |  C  |    V     |  B  |       |        |  |        |       |  N  |  M   |  ,; |  .: |  -  | PLPA |
+    //                   |     | LWIN/ADJ | LOW | SPACE | LSHIFT |  | RETURN | BKSPC | RAI | PLPA |     |
 
     [_QWERTY] = LAYOUT(
-        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                                                  XXXXXXX,    XXXXXXX,      XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,
-        KC_ESC,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                                                     KC_Y,       KC_U,         KC_I,     KC_O,     KC_P,      SV_AO,
-        KC_TAB,  H4(KC_A), H3(KC_S), H2(KC_D), H1(KC_F), KC_G,                                                     KC_H,       H1(KC_J),     H2(KC_K), H3(KC_L), H4(SV_OE), SV_AE,
-        XXXXXXX, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,       KC_LCTL, KC_ENT,            G(KC_1), G(KC_1), KC_N,       KC_M,         KC_COMM,  KC_DOT,   SV_DASH,   XXXXXXX,
-                                     XXXXXXX,  KC_LGUI,  MO(_LOWER), KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, MO(_RAISE), MO(_ADJUST),  XXXXXXX
+        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,         XXXXXXX,                                                  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,
+        KC_ESC,  KC_Q,     KC_W,     KC_E,     KC_R,            KC_T,                                                     KC_Y,       KC_U,     KC_I,     KC_O,     KC_P,      SV_AO,
+        KC_TAB,  H4(KC_A), H3(KC_S), H2(KC_D), H1(KC_F),        KC_G,                                                     KC_H,       H1(KC_J), H2(KC_K), H3(KC_L), H4(SV_OE), SV_AE,
+        XXXXXXX, KC_Z,     KC_X,     KC_C,     KC_V,            KC_B,       XXXXXXX, XXXXXXX,           XXXXXXX, XXXXXXX, KC_N,       KC_M,     KC_COMM,  KC_DOT,   SV_DASH,   XXXXXXX,
+                                     XXXXXXX,  TD(TD_GUI_ADJ),  MO(_LOWER), KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, MO(_RAISE), KC_MPLY,  XXXXXXX
     ),
 
     // -----------------------------------------------------------------------------------------------------------------
-    // |     |     |     |     |      |     |                                    |     |      |     |     |     |      |
-    // | ESC |  Q  |  W  |  F  |  P   |  B  |                                    |  J  |  L   |  U  |  Y  |  Ö  |  Å   |
-    // | TAB |  A  |  R  |  S  |  T   |  G  |                                    |  M  |  N   |  E  |  I  |  O  |  Ä   |
-    // |     |  Z  |  X  |  C  |  D   |  V  | LCTRL | RETURN |  |  RALT  | RCTRL |  K  |  H   |  ,; |  .: |  -_ | PLPA |
-    //                   |     | LWIN | LOW | SPACE | LSHIFT |  | RETURN | BKSPC | RAI | RWIN |     |
+    // |     |     |     |     |          |     |                                    |     |      |     |     |     |      |
+    // | ESC |  Q  |  W  |  F  |    P     |  B  |                                    |  J  |  L   |  U  |  Y  |  Ö  |  Å   |
+    // | TAB |  A  |  R  |  S  |    T     |  G  |                                    |  M  |  N   |  E  |  I  |  O  |  Ä   |
+    // |     |  Z  |  X  |  C  |    D     |  V  |       |        |  |        |       |  K  |  H   |  ,; |  .: |  -_ | PLPA |
+    //                   |     | LWIN/ADJ | LOW | SPACE | LSHIFT |  | RETURN | BKSPC | RAI | PLPA |     |
 
     [_COLEMAKDH] = LAYOUT(
-        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                                                  XXXXXXX,    XXXXXXX,     XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-        KC_ESC,  KC_Q,     KC_W,     KC_F,     KC_P,     KC_B,                                                     KC_J,       KC_L,        KC_U,     KC_Y,     SV_OE,    SV_AO,
-        KC_TAB,  H4(KC_A), H3(KC_R), H2(KC_S), H1(KC_T), KC_G,                                                     KC_M,       H1(KC_N),    H2(KC_E), H3(KC_I), H4(KC_O), SV_AE,
-        XXXXXXX, KC_Z,     KC_X,     KC_C,     KC_D,     KC_V,       KC_LCTL, KC_ENT,            G(KC_1), G(KC_1), KC_K,       KC_H,        KC_COMM,  KC_DOT,   SV_DASH,  XXXXXXX,
-                                     XXXXXXX,  KC_LGUI,  MO(_LOWER), KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, MO(_RAISE), MO(_ADJUST), XXXXXXX
+        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,         XXXXXXX,                                                  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+        KC_ESC,  KC_Q,     KC_W,     KC_F,     KC_P,            KC_B,                                                     KC_J,       KC_L,     KC_U,     KC_Y,     SV_OE,    SV_AO,
+        KC_TAB,  H4(KC_A), H3(KC_R), H2(KC_S), H1(KC_T),        KC_G,                                                     KC_M,       H1(KC_N), H2(KC_E), H3(KC_I), H4(KC_O), SV_AE,
+        XXXXXXX, KC_Z,     KC_X,     KC_C,     KC_D,            KC_V,       XXXXXXX, XXXXXXX,           XXXXXXX, XXXXXXX, KC_K,       KC_H,     KC_COMM,  KC_DOT,   SV_DASH,  XXXXXXX,
+                                     XXXXXXX,  TD(TD_GUI_ADJ),  MO(_LOWER), KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, MO(_RAISE), KC_MPLY,  XXXXXXX
     ),
 
     // --------------------------------------------------------------------------------------------------------
-    // |   |     |     |     |     |     |                     #            |     |     |     |     |     |   |
-    // |   |  1  |  2  |  3  |  4  |  5  |                     #            |  6  |  7  |  8  |  9  |  0  |   |
-    // |   |  ?  |  <  |  (  |  {  |  [  |                     #            |  :  |  '  |  /  |  `  |  +  |   |
-    // |   |  =  |  >  |  )  |  }  |  ]  | VOL D |   VOL U   | # |   |      |  ;  |  "  |  \  |  ´  |  -  |   |
-    //                 |     |     |     |       | PLPA>MUTE | # |   | DEL  |     |     |     |
+    // |   |     |     |     |     |     |         #            |     |     |     |     |     |   |
+    // |   |  1  |  2  |  3  |  4  |  5  |         #            |  6  |  7  |  8  |  9  |  0  |   |
+    // |   |  ?  |  <  |  (  |  {  |  [  |         #            |  :  |  '  |  /  |  `  |  +  |   |
+    // |   |  =  |  >  |  )  |  }  |  ]  |   |   | # |   |      |  ;  |  "  |  \  |  ´  |  -  |   |
+    //                 |     |     |     |   |   | # |   | DEL  |     |     |     |
     [_LOWER] = LAYOUT(
-        _______, KC_F1,       KC_F2,   KC_F3,   KC_F4,    KC_F5,                                          KC_F6,      KC_F7,      KC_F8,        KC_F9,       KC_F10,  KC_F11,
-        _______, KC_1,        KC_2,    KC_3,    KC_4,     KC_5,                                           KC_6,       KC_7,       KC_8,         KC_9,        KC_0,    KC_F12,
-        _______, SV_QUESTION, SV_LESS, SV_LPAR, SV_LBRAC, SV_LBRAK,                                       SV_COLON,   SV_SINGLEQ, SV_SLASH,     SV_BACKTICK, SV_PLUS, _______,
+        XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,                                        XXXXXXX,    XXXXXXX,    XXXXXXX,      XXXXXXX,     XXXXXXX, XXXXXXX,
+        _______, KC_1,        KC_2,    KC_3,    KC_4,     KC_5,                                           KC_6,       KC_7,       KC_8,         KC_9,        KC_0,    XXXXXXX,
+        _______, SV_QUESTION, SV_LESS, SV_LPAR, SV_LBRAC, SV_LBRAK,                                       SV_COLON,   SV_SINGLEQ, SV_SLASH,     SV_BACKTICK, SV_PLUS, XXXXXXX,
         _______, SV_EQUAL,    SV_GREA, SV_RPAR, SV_RBRAC, SV_RBRAK, _______, _______,   _______, _______, SV_SEMICLN, SV_DOUBLEQ, SV_BACKSLASH, SV_GRAVE,    SV_DASH, _______,
                                        _______, _______,  _______,  _______, _______,   _______, KC_DEL,  _______,    _______,    _______
     ),
 
-    // -------------------------------------------------------------------------------------------------------
-    // |   |     |      |     |     |      |         #               |     |      |      |      |      |     |
-    // |   | F1  |  F2  | F3  | F4  |  F5  |         #               | F6  |  F7  |  F8  |  F9  | F10  | F11 |
-    // |   |  *  | pipe |  &  |  !  |  %   |         #               | INS | LARR | UARR | RARR | PGUP | F12 |
-    // |   |  ^  |  ~   |  $  |  #  |  @   |   |   | # | PREV | NEXT |     | HOME | DARR | END  | PGDN | LAY |
-    //                  |     |     | BKSP |   |   | # |      |      |     |      |      |
+    // -------------------------------------------------------------------------------------------------
+    // |   |     |      |     |     |      |         #         |     |      |      |      |      |     |
+    // |   | F1  |  F2  | F3  | F4  |  F5  |         #         | F6  |  F7  |  F8  |  F9  | F10  | F11 |
+    // |   |  *  | pipe |  &  |  !  |  %   |         #         | INS | LARR | UARR | RARR | PGUP | F12 |
+    // |   |  ^  |  ~   |  $  |  #  |  @   |   |   | # |   |   |     | HOME | DARR | END  | PGDN | LAY |
+    //                  |     |     | BKSP |   |   | # |   |   |     |      |      |
     [_RAISE] = LAYOUT(
-        _______, _______,     _______,  _______,   _______,  _______,                                              _______, _______, _______, _______,  _______, _______,
+        XXXXXXX, XXXXXXX,     XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,                                              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,
         _______, KC_F1,       KC_F2,    KC_F3,     KC_F4,    KC_F5,                                                KC_F6,   KC_F7,   KC_F8,   KC_F9,    KC_F10,  KC_F11,
         _______, SV_ASTERIX,  SV_PIPE,  SV_AND,    SV_EXCLM, SV_PERCENT,                                           KC_INS,  KC_LEFT, KC_UP,   KC_RIGHT, KC_PGUP, KC_F12,
-        _______, SV_EXPONENT, SV_TILDE, SV_DOLLAR, SV_HASH,  SV_AT,      _______, _______,       _______, _______, _______, KC_HOME, KC_DOWN, KC_END,   KC_PGDN, ROTATE_LAYOUT,
+        _______, SV_EXPONENT, SV_TILDE, SV_DOLLAR, SV_HASH,  SV_AT,      _______, _______,       _______, _______, XXXXXXX, KC_HOME, KC_DOWN, KC_END,   KC_PGDN, _______,
                                         _______,   _______,  KC_BSPC,    _______, _______,       _______, _______, _______, _______, _______
     ),
 
@@ -160,10 +160,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // |     |     |      | BTN4 | BTN5 | WH D |                  |      |      |      |      |      |     |
     //                    |      |      |      |   |   |  |   |   |      |      |      |
     [_MOUSE] = LAYOUT(
-        _______, _______, _______, _______, _______, _______,                                        _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______,                                        KC_BTN1, KC_BTN2, _______, _______, _______, _______,
-        _______, _______, KC_BTN3, KC_BTN2, KC_BTN1, KC_WH_U,                                        _______, _______, KC_BTN3, _______, _______, _______,
-        _______, _______, _______, KC_BTN4, KC_BTN5, KC_WH_D, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                        KC_BTN1, KC_BTN2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, KC_BTN3, KC_BTN2, KC_BTN1, KC_WH_U,                                        XXXXXXX, XXXXXXX, KC_BTN3, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, KC_BTN4, KC_BTN5, KC_WH_D, _______, _______,    _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
                                    _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______
     ),
 
@@ -174,11 +174,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // |     |     |     |     | PREV | VOLD |                  |     |      |      |      |      |     |
     //                   |     |      |      |   |   |  |   |   |     |      |      |
     [_ADJUST] = LAYOUT(
-        _______, _______, _______, _______, _______, _______,                                        _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, KC_MPLY, KC_MUTE, _______,                                        _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, KC_MNXT, KC_VOLU, _______,                                        _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, KC_MPRV, KC_VOLD, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
-                                   _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                        XXXXXXX, XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, KC_MPLY, KC_MUTE, XXXXXXX,                                        XXXXXXX, XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, KC_MNXT, KC_VOLU, XXXXXXX,                                        XXXXXXX, ROTATE_LAYOUT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, KC_MPRV, KC_VOLD, XXXXXXX, _______, _______,    _______, _______, XXXXXXX, XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                                   _______, _______, _______, _______, _______,    _______, _______, _______, _______,       _______
     ),
 };
 // clang-format on
@@ -198,37 +198,54 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case TD(TD_GUI_ADJ):
+            return TAPPING_TERM * 2;
         case H4(KC_A):
         case H4(KC_O):
-            return TAPPING_TERM + 70;
-        case H3(KC_R):
+        case H4(SV_OE):
+            return TAPPING_TERM + 80;
         case H3(KC_I):
-        case H2(KC_S):
+        case H3(KC_L):
+        case H3(KC_R):
+        case H3(KC_S):
+        case H2(KC_D):
         case H2(KC_E):
-        case H1(KC_T):
+        case H2(KC_K):
+        case H2(KC_S):
+        case H1(KC_F):
+        case H1(KC_J):
         case H1(KC_N):
+        case H1(KC_T):
         default:
             return TAPPING_TERM;
     }
 }
 
-void td_raise_mouse_tap(qk_tap_dance_state_t *state, void *user_data) {
+void td_gui_adjust_finished(qk_tap_dance_state_t *state, void *user_data) {
     switch (state->count) {
         case 1:
-            layer_on(_RAISE);
+            register_code(KC_LGUI);
             break;
         case 2:
-            layer_move(_MOUSE);
+            layer_move(_ADJUST);
             break;
+        case 3:
+            reset_tap_dance(state);
     }
 }
 
-void td_raise_mouse_finish(qk_tap_dance_state_t *state, void *user_data) {
-    layer_clear();
+void td_gui_adjust_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (state->count) {
+        case 1:
+            unregister_code(KC_LGUI);
+            break;
+        case 2:
+            layer_clear();
+    }
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_RAI_MOU] = ACTION_TAP_DANCE_FN_ADVANCED(td_raise_mouse_tap, NULL, td_raise_mouse_finish),
+    [TD_GUI_ADJ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_gui_adjust_finished, td_gui_adjust_reset),
 };
 
 #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
