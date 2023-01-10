@@ -87,10 +87,8 @@ int current_layout = _QWERTY;
 
 enum custom_keycodes {
     ROTATE_LAYOUT = SAFE_RANGE,
-};
-
-enum tap_dances {
-    TD_GUI_ADJ,
+    GUI_ADJUST,
+    LOWER,
 };
 
 // clang-format off
@@ -103,11 +101,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                   |     | LWIN/ADJ | LOW | SPACE | LSHIFT |  | RETURN | BKSPC | RAI | PLPA |     |
 
     [_QWERTY] = LAYOUT(
-        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,         XXXXXXX,                                                  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,
-        KC_ESC,  KC_Q,     KC_W,     KC_E,     KC_R,            KC_T,                                                     KC_Y,       KC_U,     KC_I,     KC_O,     KC_P,      SV_AO,
-        KC_TAB,  H4(KC_A), H3(KC_S), H2(KC_D), H1(KC_F),        KC_G,                                                     KC_H,       H1(KC_J), H2(KC_K), H3(KC_L), H4(SV_OE), SV_AE,
-        XXXXXXX, KC_Z,     KC_X,     KC_C,     KC_V,            KC_B,       XXXXXXX, XXXXXXX,           XXXXXXX, XXXXXXX, KC_N,       KC_M,     KC_COMM,  KC_DOT,   SV_DASH,   XXXXXXX,
-                                     XXXXXXX,  TD(TD_GUI_ADJ),  MO(_LOWER), KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, MO(_RAISE), KC_MPLY,  XXXXXXX
+        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,     XXXXXXX,                                                XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,
+        KC_ESC,  KC_Q,     KC_W,     KC_E,     KC_R,        KC_T,                                                   KC_Y,       KC_U,     KC_I,     KC_O,     KC_P,      SV_AO,
+        KC_TAB,  H4(KC_A), H3(KC_S), H2(KC_D), H1(KC_F),    KC_G,                                                   KC_H,       H1(KC_J), H2(KC_K), H3(KC_L), H4(SV_OE), SV_AE,
+        XXXXXXX, KC_Z,     KC_X,     KC_C,     KC_V,        KC_B,     XXXXXXX, XXXXXXX,           XXXXXXX, XXXXXXX, KC_N,       KC_M,     KC_COMM,  KC_DOT,   SV_DASH,   XXXXXXX,
+                                     XXXXXXX,  GUI_ADJUST,  LOWER,    KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, MO(_RAISE), KC_MPLY,  XXXXXXX
     ),
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -118,11 +116,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                   |     | LWIN/ADJ | LOW | SPACE | LSHIFT |  | RETURN | BKSPC | RAI | PLPA |     |
 
     [_COLEMAKDH] = LAYOUT(
-        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,         XXXXXXX,                                                  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-        KC_ESC,  KC_Q,     KC_W,     KC_F,     KC_P,            KC_B,                                                     KC_J,       KC_L,     KC_U,     KC_Y,     SV_OE,    SV_AO,
-        KC_TAB,  H4(KC_A), H3(KC_R), H2(KC_S), H1(KC_T),        KC_G,                                                     KC_M,       H1(KC_N), H2(KC_E), H3(KC_I), H4(KC_O), SV_AE,
-        XXXXXXX, KC_Z,     KC_X,     KC_C,     KC_D,            KC_V,       XXXXXXX, XXXXXXX,           XXXXXXX, XXXXXXX, KC_K,       KC_H,     KC_COMM,  KC_DOT,   SV_DASH,  XXXXXXX,
-                                     XXXXXXX,  TD(TD_GUI_ADJ),  MO(_LOWER), KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, MO(_RAISE), KC_MPLY,  XXXXXXX
+        XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,     XXXXXXX,                                                XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+        KC_ESC,  KC_Q,     KC_W,     KC_F,     KC_P,        KC_B,                                                   KC_J,       KC_L,     KC_U,     KC_Y,     SV_OE,    SV_AO,
+        KC_TAB,  H4(KC_A), H3(KC_R), H2(KC_S), H1(KC_T),    KC_G,                                                   KC_M,       H1(KC_N), H2(KC_E), H3(KC_I), H4(KC_O), SV_AE,
+        XXXXXXX, KC_Z,     KC_X,     KC_C,     KC_D,        KC_V,     XXXXXXX, XXXXXXX,           XXXXXXX, XXXXXXX, KC_K,       KC_H,     KC_COMM,  KC_DOT,   SV_DASH,  XXXXXXX,
+                                     XXXXXXX,  GUI_ADJUST,  LOWER,    KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, MO(_RAISE), KC_MPLY,  XXXXXXX
     ),
 
     // --------------------------------------------------------------------------------------------------------
@@ -183,6 +181,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
+bool guiAdjustDown = false;
+bool lowerDown = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case ROTATE_LAYOUT:
@@ -192,14 +193,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+        case GUI_ADJUST:
+            guiAdjustDown = record->event.pressed;
+            if (lowerDown && guiAdjustDown)
+                register_mods(MOD_MASK_GUI);
+            else if (lowerDown && !guiAdjustDown)
+                unregister_mods(MOD_MASK_GUI);
+            else if (!lowerDown && guiAdjustDown)
+                layer_move(_ADJUST);
+            else if (!lowerDown && !guiAdjustDown)
+                layer_clear();
+            break;
+        case LOWER:
+            lowerDown = record->event.pressed;
+            if (lowerDown && guiAdjustDown) {
+                layer_move(_LOWER);
+                register_mods(MOD_MASK_GUI);
+            } else if (lowerDown && !guiAdjustDown)
+                layer_move(_LOWER);
+            else if (!lowerDown && guiAdjustDown) {
+                unregister_mods(MOD_MASK_GUI);
+                layer_move(_ADJUST);
+            } else if (!lowerDown && !guiAdjustDown)
+                layer_clear();
+            break;
     }
     return true;
 }
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case TD(TD_GUI_ADJ):
-            return TAPPING_TERM * 2;
         case H4(KC_A):
         case H4(KC_O):
         case H4(SV_OE):
@@ -221,32 +244,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-void td_gui_adjust_finished(qk_tap_dance_state_t *state, void *user_data) {
-    switch (state->count) {
-        case 1:
-            register_code(KC_LGUI);
-            break;
-        case 2:
-            layer_move(_ADJUST);
-            break;
-        case 3:
-            reset_tap_dance(state);
-    }
-}
-
-void td_gui_adjust_reset(qk_tap_dance_state_t *state, void *user_data) {
-    switch (state->count) {
-        case 1:
-            unregister_code(KC_LGUI);
-            break;
-        case 2:
-            layer_clear();
-    }
-}
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_GUI_ADJ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_gui_adjust_finished, td_gui_adjust_reset),
-};
+qk_tap_dance_action_t tap_dance_actions[] = {};
 
 #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
     void pointing_device_init_user(void) {
