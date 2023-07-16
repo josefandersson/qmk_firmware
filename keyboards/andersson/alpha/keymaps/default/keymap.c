@@ -75,15 +75,15 @@
 #define H4(x) LGUI_T(x)
 
 enum keyboard_layers {
-    _QWERTY = 0,
-    _COLEMAKDH,
+    _COLEMAKDH = 0,
+    _QWERTY,
     _LOWER,
     _RAISE,
     _MOUSE,
     _ADJUST,
 };
 
-int current_layout = _QWERTY;
+int current_layout = _COLEMAKDH;
 
 enum custom_keycodes {
     ROTATE_LAYOUT = SAFE_RANGE,
@@ -99,7 +99,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // | TAB |  A  |  S  |  D  |    F     |  G  |                                    |  H  |  J   |  K  |  L  |  Ö  |  Ä   |
     // |     |  Z  |  X  |  C  |    V     |  B  |       |        |  |        |       |  N  |  M   |  ,; |  .: |  -  | PLPA |
     //                   |     | LWIN/ADJ | LOW | SPACE | LSHIFT |  | RETURN | BKSPC | RAI | PLPA |     |
-
     [_QWERTY] = LAYOUT(
         XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,     XXXXXXX,                                                XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,
         KC_ESC,  KC_Q,     KC_W,     KC_E,     KC_R,        KC_T,                                                   KC_Y,       KC_U,     KC_I,     KC_O,     KC_P,      SV_AO,
@@ -114,7 +113,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // | TAB |  A  |  R  |  S  |    T     |  G  |                                    |  M  |  N   |  E  |  I  |  O  |  Ä   |
     // |     |  Z  |  X  |  C  |    D     |  V  |       |        |  |        |       |  K  |  H   |  ,; |  .: |  -_ | PLPA |
     //                   |     | LWIN/ADJ | LOW | SPACE | LSHIFT |  | RETURN | BKSPC | RAI | PLPA |     |
-
     [_COLEMAKDH] = LAYOUT(
         XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,     XXXXXXX,                                                XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
         KC_ESC,  KC_Q,     KC_W,     KC_F,     KC_P,        KC_B,                                                   KC_J,       KC_L,     KC_U,     KC_Y,     SV_OE,    SV_AO,
