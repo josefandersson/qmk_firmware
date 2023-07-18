@@ -1,25 +1,5 @@
 #pragma once
 
-#include "config_common.h"
-/*
-Copyright 2022 Thomas Baart <thomas@splitkb.com>
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-#pragma once
-
 /* key matrix size */
 /* Rows are doubled up */
 #define MATRIX_ROWS 10
@@ -36,11 +16,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define MATRIX_HAS_GHOST
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
-#define DEBOUNCE        5
-#define IGNORE_MOD_TAP_INTERRUPT
-#define TAPPING_TERM 180
+#define DEBOUNCE             5
+#define TAPPING_TERM         180
 #define TAPPING_TERM_PER_KEY
-#define TAPPING_FORCE_HOLD
+#define QUICK_TAP_TERM       70
 #define PERMISSIVE_HOLD
 
 #define USE_I2C
@@ -52,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef RGBLIGHT_ENABLE
-    #define RGB_DI_PIN F4
+    #define WS2812_DI_PIN F4
     #define RGB_MATRIX_LED_COUNT 60
     #define RGB_MATRIX_SPLIT { 30, 30 }
 #endif

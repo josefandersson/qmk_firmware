@@ -224,7 +224,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case H4(KC_A):
         case H4(KC_O):
         case H4(SV_OE):
-            return TAPPING_TERM + 80;
+            return TAPPING_TERM + 120;
         case H3(KC_I):
         case H3(KC_L):
         case H3(KC_R):
@@ -242,7 +242,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-qk_tap_dance_action_t tap_dance_actions[] = {};
+tap_dance_action_t tap_dance_actions[] = {};
 
 #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
     void pointing_device_init_user(void) {
