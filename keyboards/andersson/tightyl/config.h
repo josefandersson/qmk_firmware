@@ -23,5 +23,3 @@
 #define PERMISSIVE_HOLD
 
 #define SOFT_SERIAL_PIN D2
-
-#define USE_I2C
