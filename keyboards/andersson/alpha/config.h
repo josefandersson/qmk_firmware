@@ -23,6 +23,7 @@
 #define PERMISSIVE_HOLD
 
 #define USE_I2C
+// #define I2C_DRIVER I2CD1
 // #define LED_CAPS_LOCK_PIN D1
 
 #ifdef OLED_ENABLE
@@ -31,7 +32,14 @@
 #endif
 
 #ifdef RGBLIGHT_ENABLE
-    #define WS2812_DI_PIN F4
+    #define RGB_DI_PIN F4
+    #define RGBLED_NUM 60
+    #define RGBLIGHT_SPLIT
+    #define RGBLED_SPLIT { 30, 30 }
+#endif
+
+#ifdef RGB_MATRIX_ENABLE
+    // #define WS2812_DI_PIN F4
     #define RGB_MATRIX_LED_COUNT 60
     #define RGB_MATRIX_SPLIT { 30, 30 }
 #endif

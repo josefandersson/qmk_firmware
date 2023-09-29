@@ -14,8 +14,10 @@ MOUSEKEY_ENABLE = yes
 EXTRAKEY_ENABLE = yes
 BACKLIGHT_ENABLE = no
 RGBLIGHT_ENABLE = no
+# Used for external RGB matrix, should probably be 'no'
+RGB_MATRIX_ENABLE = no
 
 LOCAL_GLCDFONT = yes
 
-POINTING_DEVICE_ENABLE = yes
-POINTING_DEVICE_DRIVER = cirque_pinnacle_i2c
+# POINTING_DEVICE_ENABLE = yes
+# POINTING_DEVICE_DRIVER = cirque_pinnacle_i2c
