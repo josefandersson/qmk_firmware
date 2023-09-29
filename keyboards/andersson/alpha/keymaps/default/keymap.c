@@ -84,6 +84,7 @@ enum keyboard_layers {
 };
 
 int current_layout = _COLEMAKDH;
+int hm_enabled = 1;
 
 enum custom_keycodes {
     ROTATE_LAYOUT = SAFE_RANGE,
@@ -184,6 +185,96 @@ bool lowerDown = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        // case H4(KC_A):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_A
+        //         return false;
+        //     }
+        //     break;
+        // case H3(KC_S):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_S
+        //         return false;
+        //     }
+        //     break;
+        // case H2(KC_D):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_D
+        //         return false;
+        //     }
+        //     break;
+        // case H1(KC_F):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_F
+        //         return false;
+        //     }
+        //     break;
+        // case H1(KC_J):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_J
+        //         return false;
+        //     }
+        //     break;
+        // case H2(KC_K):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_K
+        //         return false;
+        //     }
+        //     break;
+        // case H3(KC_L):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_L
+        //         return false;
+        //     }
+        //     break;
+        // case H4(SV_OE):
+        //     if (lowerDown) {
+        //         // Somehow only send SV_OE
+        //         return false;
+        //     }
+        //     break;
+        // case H3(KC_R):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_R
+        //         return false;
+        //     }
+        //     break;
+        // case H2(KC_S):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_S
+        //         return false;
+        //     }
+        //     break;
+        // case H1(KC_T):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_T
+        //         return false;
+        //     }
+        //     break;
+        // case H1(KC_N):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_N
+        //         return false;
+        //     }
+        //     break;
+        // case H2(KC_E):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_E
+        //         return false;
+        //     }
+        //     break;
+        // case H3(KC_I):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_I
+        //         return false;
+        //     }
+        //     break;
+        // case H4(KC_O):
+        //     if (lowerDown) {
+        //         // Somehow only send KC_O
+        //         return false;
+        //     }
+        //     break;
         case ROTATE_LAYOUT:
             if (record->event.pressed) {
                 current_layout = current_layout == _QWERTY ? _COLEMAKDH : _QWERTY;
