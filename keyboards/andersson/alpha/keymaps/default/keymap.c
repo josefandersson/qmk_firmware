@@ -77,6 +77,7 @@
 enum keyboard_layers {
     _COLEMAKDH = 0,
     _QWERTY,
+    _GAMING,
     _LOWER,
     _RAISE,
     _MOUSE,
@@ -84,7 +85,6 @@ enum keyboard_layers {
 };
 
 int current_layout = _COLEMAKDH;
-int hm_enabled = 1;
 
 enum custom_keycodes {
     ROTATE_LAYOUT = SAFE_RANGE,
@@ -120,6 +120,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  H4(KC_A), H3(KC_R), H2(KC_S), H1(KC_T),    KC_G,                                                   KC_M,       H1(KC_N), H2(KC_E), H3(KC_I), H4(KC_O), SV_AE,
         XXXXXXX, KC_Z,     KC_X,     KC_C,     KC_D,        KC_V,     XXXXXXX, XXXXXXX,           XXXXXXX, XXXXXXX, KC_K,       KC_H,     KC_COMM,  KC_DOT,   SV_DASH,  XXXXXXX,
                                      XXXXXXX,  GUI_ADJUST,  LOWER,    KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, MO(_RAISE), KC_MPLY,  XXXXXXX
+    ),
+
+    // -----------------------------------------------------------------------------------------------------------------
+    // |     |     |     |     |          |     |                                    |     |      |     |     |     |      |
+    // | ESC |  Q  |  W  |  E  |    R     |  T  |                                    |  Y  |  U   |  I  |  O  |  P  |  Å   |
+    // | TAB |  A  |  S  |  D  |    F     |  G  |                                    |  H  |  J   |  K  |  L  |  Ö  |  Ä   |
+    // |     |  Z  |  X  |  C  |    V     |  B  |       |        |  |        |       |  N  |  M   |  ,; |  .: |  -  | PLPA |
+    //                   |     | LWIN/ADJ | LOW | SPACE | LSHIFT |  | RETURN | BKSPC | RAI | PLPA |     |
+    [_GAMING] = LAYOUT(
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                          KC_6,       KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
+        KC_TAB,  KC_LSFT, KC_A,    KC_W,    KC_D,    KC_T,                                          XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, KC_LCTL, KC_Q,    KC_S,    KC_E,    XXXXXXX, XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                                   XXXXXXX, XXXXXXX, XXXXXXX, KC_SPC,  XXXXXXX,   XXXXXXX, XXXXXXX, MO(_RAISE), KC_MPLY, XXXXXXX
     ),
 
     // --------------------------------------------------------------------------------------------------------
@@ -185,99 +199,12 @@ bool lowerDown = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        // case H4(KC_A):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_A
-        //         return false;
-        //     }
-        //     break;
-        // case H3(KC_S):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_S
-        //         return false;
-        //     }
-        //     break;
-        // case H2(KC_D):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_D
-        //         return false;
-        //     }
-        //     break;
-        // case H1(KC_F):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_F
-        //         return false;
-        //     }
-        //     break;
-        // case H1(KC_J):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_J
-        //         return false;
-        //     }
-        //     break;
-        // case H2(KC_K):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_K
-        //         return false;
-        //     }
-        //     break;
-        // case H3(KC_L):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_L
-        //         return false;
-        //     }
-        //     break;
-        // case H4(SV_OE):
-        //     if (lowerDown) {
-        //         // Somehow only send SV_OE
-        //         return false;
-        //     }
-        //     break;
-        // case H3(KC_R):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_R
-        //         return false;
-        //     }
-        //     break;
-        // case H2(KC_S):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_S
-        //         return false;
-        //     }
-        //     break;
-        // case H1(KC_T):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_T
-        //         return false;
-        //     }
-        //     break;
-        // case H1(KC_N):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_N
-        //         return false;
-        //     }
-        //     break;
-        // case H2(KC_E):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_E
-        //         return false;
-        //     }
-        //     break;
-        // case H3(KC_I):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_I
-        //         return false;
-        //     }
-        //     break;
-        // case H4(KC_O):
-        //     if (lowerDown) {
-        //         // Somehow only send KC_O
-        //         return false;
-        //     }
-        //     break;
         case ROTATE_LAYOUT:
             if (record->event.pressed) {
-                current_layout = current_layout == _QWERTY ? _COLEMAKDH : _QWERTY;
+                current_layout =
+                    current_layout == _QWERTY ? _COLEMAKDH
+                    : current_layout == _COLEMAKDH ? _GAMING
+                    : _QWERTY;
                 default_layer_set(1UL << current_layout);
                 return false;
             }
