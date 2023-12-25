@@ -1,7 +1,7 @@
 {
-    "keyboard_name": "Andersson Alpha",
+    "keyboard_name": "Andersson Alpha rev 2",
     "manufacturer": "Andersson",
-    "url": "https://git.josf.dev/josefandersson/keyboard",
+    "url": "https://git.josf.dev/josefandersson/keyboard/src/branch/master/andersson_alpha/rev2",
     "maintainer": "qmk",
     "processor": "atmega32u4",
     "usb": {
@@ -10,7 +10,7 @@
         "device_version": "0.0.1"
     },
     "rgblight": {
-        "max_brightness": 69
+        "max_brightness": 120
     },
     "backlight": {
         "pin": "B2",

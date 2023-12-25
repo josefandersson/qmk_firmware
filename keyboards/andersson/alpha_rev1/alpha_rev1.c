@@ -1,4 +1,4 @@
-#include "alpha.h"
+#include "alpha_rev1.h"
 
 #ifdef  DDRD
     void matrix_init_kb(void) {

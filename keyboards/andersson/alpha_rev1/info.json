@@ -1,7 +1,7 @@
 {
-    "keyboard_name": "Andersson Alpha",
+    "keyboard_name": "Andersson Alpha rev 1",
     "manufacturer": "Andersson",
-    "url": "https://git.josf.dev/josefandersson/keyboard",
+    "url": "https://git.josf.dev/josefandersson/keyboard/src/branch/master/andersson_alpha/rev1",
     "maintainer": "qmk",
     "processor": "atmega32u4",
     "usb": {
