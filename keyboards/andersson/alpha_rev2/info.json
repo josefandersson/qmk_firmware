@@ -10,7 +10,7 @@
         "device_version": "0.0.1"
     },
     "rgblight": {
-        "max_brightness": 120
+        "max_brightness": 170
     },
     "backlight": {
         "pin": "B2",

@@ -154,32 +154,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     // --------------------------------------------------------------------------------------------------
-    // |     |     |     |     |      |      |                  |     |      |      |      |      |     |
-    // |     |     |     |     | PLPA | MUTE |                  |     |      |      |      |      |     |
-    // |     |     |     |     | NEXT | VOLU |                  |     |      |      |      |      |     |
-    // |     |     |     |     | PREV | VOLD |                  |     |      |      |      |      |     |
-    //                   |     |      |      |   |   |  |   |   |     |      |      |
+    // |     |     |     |     | PLPA | MUTE |                  |     |        | RGBT |      |     |     |
+    // |     |     |     |     | NEXT | VOLU |                  |     | ROTLAY | RGB+ | HUE+ |     |     |
+    // |     |     |     |     | PREV | VOLD |                  |     |        | RGB- | HUE- |     |     |
+    //                   |     |      |      |   |   |  |   |   |     |        |      |
     [_ADJUST] = LAYOUT(
-        _______, XXXXXXX, XXXXXXX, KC_MPLY, KC_MUTE, XXXXXXX,                                        XXXXXXX, XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        _______, XXXXXXX, XXXXXXX, KC_MNXT, KC_VOLU, XXXXXXX,                                        XXXXXXX, ROTATE_LAYOUT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                 XXXXXXX, XXXXXXX, KC_MPRV, KC_VOLD, XXXXXXX,                                        XXXXXXX, XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, KC_MPLY, KC_MUTE, XXXXXXX,                                        XXXXXXX, XXXXXXX,       RGB_TOG, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, KC_MNXT, KC_VOLU, XXXXXXX,                                        XXXXXXX, ROTATE_LAYOUT, RGB_VAI, RGB_HUI, XXXXXXX, XXXXXXX,
+                 XXXXXXX, XXXXXXX, KC_MPRV, KC_VOLD, XXXXXXX,                                        XXXXXXX, XXXXXXX,       RGB_VAD, RGB_HUD, XXXXXXX,
                                             _______, _______, _______, _______,    _______, _______, _______, _______
     ),
 };
 // clang-format on
-
-extern rgblight_config_t rgblight_config;
-void keyboard_post_init_user(void) {
-    rgblight_config.hue    = 128;
-    rgblight_config.sat    = 255;
-    rgblight_config.val    = 255;
-
-    rgblight_enable_noeeprom(); // Enables RGB, without saving settings
-    rgblight_sethsv_noeeprom(HSV_ORANGE);
-    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-
-}
-
 
 bool guiAdjustDown = false;
 bool lowerDown = false;
@@ -197,27 +183,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case GUI_ADJUST:
             guiAdjustDown = record->event.pressed;
-            if (lowerDown && guiAdjustDown)
+            if (lowerDown && guiAdjustDown) {
                 register_mods(MOD_MASK_GUI);
-            else if (lowerDown && !guiAdjustDown)
+            } else if (lowerDown && !guiAdjustDown) {
                 unregister_mods(MOD_MASK_GUI);
-            else if (!lowerDown && guiAdjustDown)
+            } else if (!lowerDown && guiAdjustDown) {
                 layer_move(_ADJUST);
-            else if (!lowerDown && !guiAdjustDown)
+            } else if (!lowerDown && !guiAdjustDown) {
                 layer_clear();
+            }
             break;
         case LOWER:
             lowerDown = record->event.pressed;
             if (lowerDown && guiAdjustDown) {
                 layer_move(_LOWER);
                 register_mods(MOD_MASK_GUI);
-            } else if (lowerDown && !guiAdjustDown)
+            } else if (lowerDown && !guiAdjustDown) {
                 layer_move(_LOWER);
-            else if (!lowerDown && guiAdjustDown) {
+            } else if (!lowerDown && guiAdjustDown) {
                 unregister_mods(MOD_MASK_GUI);
                 layer_move(_ADJUST);
-            } else if (!lowerDown && !guiAdjustDown)
+            } else if (!lowerDown && !guiAdjustDown) {
                 layer_clear();
+            }
             break;
     }
     return true;
