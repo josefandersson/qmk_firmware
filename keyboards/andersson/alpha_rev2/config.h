@@ -9,7 +9,6 @@
 #define MATRIX_ROW_PINS { E6, D7, C6, D4 }
 #define MATRIX_COL_PINS { B4, B5, F4, F5, F6, F7 }
 
-/* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION ROW2COL
 
 /* define if matrix has ghost (lacks anti-ghosting diodes) */
@@ -22,10 +21,9 @@
 #define QUICK_TAP_TERM       70
 #define PERMISSIVE_HOLD
 
+/* The board suppords both serial and I2C depending on which pads are jumped on the PCB. */
 #define SOFT_SERIAL_PIN D2
 // #define USE_I2C
-// #define I2C_DRIVER I2CD1
-// #define LED_CAPS_LOCK_PIN D1
 
 #ifdef OLED_ENABLE
     #define OLED_DISPLAY_128X64
@@ -33,7 +31,7 @@
 #endif
 
 #ifdef RGBLIGHT_ENABLE
-    #define RGB_DI_PIN D3
+    #define WS2812_DI_PIN D3
     #define RGBLED_NUM 42
     #define RGBLIGHT_SPLIT
     #define RGBLED_SPLIT { 21, 21 }
@@ -47,12 +45,6 @@
     #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS
     #define ENABLE_RGB_MATRIX_SPLASH
     #define ENABLE_RGB_MATRIX_RIVERFLOW
-#endif
-
-#ifdef RGB_MATRIX_ENABLE
-    // #define WS2812_DI_PIN F4
-    #define RGB_MATRIX_LED_COUNT 42
-    #define RGB_MATRIX_SPLIT { 21, 21 }
 #endif
 
 #ifdef POINTING_DEVICE_ENABLE
