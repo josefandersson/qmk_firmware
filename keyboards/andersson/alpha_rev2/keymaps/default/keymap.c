@@ -159,9 +159,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // |     |     |     |     | PREV | VOLD |                  |     |        | RGB- | HUE- |     |     |
     //                   |     |      |      |   |   |  |   |   |     |        |      |
     [_ADJUST] = LAYOUT(
-        _______, XXXXXXX, XXXXXXX, KC_MPLY, KC_MUTE, XXXXXXX,                                        XXXXXXX, XXXXXXX,       RGB_TOG, XXXXXXX, XXXXXXX, XXXXXXX,
-        _______, XXXXXXX, XXXXXXX, KC_MNXT, KC_VOLU, XXXXXXX,                                        XXXXXXX, ROTATE_LAYOUT, RGB_VAI, RGB_HUI, XXXXXXX, XXXXXXX,
-                 XXXXXXX, XXXXXXX, KC_MPRV, KC_VOLD, XXXXXXX,                                        XXXXXXX, XXXXXXX,       RGB_VAD, RGB_HUD, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, KC_MPLY, KC_MUTE, XXXXXXX,                                        XXXXXXX, XXXXXXX,       RGB_TOG, XXXXXXX, RGB_MODE_PLAIN, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, KC_MNXT, KC_VOLU, XXXXXXX,                                        XXXXXXX, ROTATE_LAYOUT, RGB_VAI, RGB_HUI, RGB_MOD, XXXXXXX,
+                 XXXXXXX, XXXXXXX, KC_MPRV, KC_VOLD, XXXXXXX,                                        XXXXXXX, XXXXXXX,       RGB_VAD, RGB_HUD, RGB_MODE_SNAKE,
                                             _______, _______, _______, _______,    _______, _______, _______, _______
     ),
 };
@@ -169,6 +169,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool guiAdjustDown = false;
 bool lowerDown = false;
+
+void keyboard_post_init_user() {
+    #ifdef RGB_MATRIX_ENABLE
+        rgb_matrix_enable();
+        rgb_matrix_mode(RGB_MATRIX_SOLID_REACTIVE_WIDE);
+    #endif
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {

@@ -12,10 +12,14 @@ SPACE_CADET_ENABLE = no
 MAGIC_ENABLE = no
 MOUSEKEY_ENABLE = yes
 EXTRAKEY_ENABLE = yes
+
 BACKLIGHT_ENABLE = no
+
+# RGB underglow
 RGBLIGHT_ENABLE = yes
-# Used for external RGB matrix, should probably be 'no'
+# Per key RGB
 RGB_MATRIX_ENABLE = no
+RGB_MATRIX_DRIVER = ws2812
 
 LOCAL_GLCDFONT = yes
 

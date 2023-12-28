@@ -13,7 +13,8 @@
         "device_version": "0.0.1"
     },
     "rgblight": {
-        "max_brightness": 170
+        "max_brightness": 140,
+        "sleep": true
     },
     "backlight": {
         "levels": 7
