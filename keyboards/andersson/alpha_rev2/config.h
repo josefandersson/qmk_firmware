@@ -53,7 +53,7 @@
 #ifdef RGB_MATRIX_ENABLE
     #define WS2812_DI_PIN D3
     #define RGB_MATRIX_LED_COUNT 42
-#    define RGB_MATRIX_SPLIT { 21, 21 }
+    #define RGB_MATRIX_SPLIT { 21, 21 }
 
     #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150
 
@@ -61,7 +61,7 @@
     #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
     #define RGB_MATRIX_KEYPRESSES
     #define RGB_DISABLE_WHEN_USB_SUSPENDED
-    #define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_RAINDROPS
+    //#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_RAINDROPS
 
     // RGB Matrix Animation modes. Explicitly enabled
     // For full list of effects, see:
@@ -114,8 +114,8 @@
 #endif
 
 #ifdef MOUSEKEY_ENABLE
-    // Enables constant and momentary modes for mousekeys
-    #define MK_3_SPEED (https://docs.qmk.fm/#/feature_mouse_keys?id=constant-mode)
+    // Enables constant and momentary modes for mousekeys (https://docs.qmk.fm/#/feature_mouse_keys?id=constant-mode)
+    #define MK_3_SPEED
     #define MK_MOMENTARY_ACCEL
 
     #define MOUSEKEY_DELAY          0

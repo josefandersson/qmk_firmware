@@ -171,10 +171,6 @@ bool guiAdjustDown = false;
 bool lowerDown = false;
 
 void keyboard_post_init_user() {
-    #ifdef RGB_MATRIX_ENABLE
-        rgb_matrix_enable();
-        rgb_matrix_mode(RGB_MATRIX_SOLID_REACTIVE_WIDE);
-    #endif
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {

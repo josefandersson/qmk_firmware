@@ -5,6 +5,7 @@ LTO_ENABLE = yes
 SPLIT_KEYBOARD = yes
 
 #OLED_ENABLE = yes
+#LOCAL_GLCDFONT = yes
 TAP_DANCE_ENABLE = yes
 CONSOLE_ENABLE = no
 COMMAND_ENABLE = no
@@ -14,18 +15,18 @@ MOUSEKEY_ENABLE = no
 # Enables media and system control keys
 EXTRAKEY_ENABLE = yes
 
+# Backlight
 BACKLIGHT_ENABLE = no
 
 # RGB underglow
-#RGBLIGHT_ENABLE = yes
+RGBLIGHT_ENABLE = no
 
 # Per key RGB
 RGB_MATRIX_ENABLE = yes
 RGB_MATRIX_DRIVER = ws2812
 
-LOCAL_GLCDFONT = no
+# Required for RP2040
+#SERIAL_DRIVER = vendor
 
-# SERIAL_DRIVER = vendor
-
-# POINTING_DEVICE_ENABLE = yes
-# POINTING_DEVICE_DRIVER = cirque_pinnacle_i2c
+#POINTING_DEVICE_ENABLE = yes
+#POINTING_DEVICE_DRIVER = cirque_pinnacle_i2c
