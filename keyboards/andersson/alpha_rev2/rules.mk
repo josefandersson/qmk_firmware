@@ -2,6 +2,8 @@ MCU = atmega32u4
 BOOTLOADER = caterina
 LTO_ENABLE = yes
 
+#VIA_ENABLE = yes
+
 SPLIT_KEYBOARD = yes
 
 #OLED_ENABLE = yes

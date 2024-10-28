@@ -13,21 +13,24 @@ enum keyboard_layers {
     _RAISE,
     _MOUSE,
     _ADJUST,
+    _MINECRAFT,
 };
 
 int current_layout = _COLEMAKDH;
+bool is_minecraft = false;
 
 enum custom_keycodes {
     ROTATE_LAYOUT = SAFE_RANGE,
     GUI_ADJUST,
     LOWER,
+    TOGGLE_MINECR,
 };
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    // -----------------------------------------------------------------------------------------------------------------
-    // | ESC |  Q  |  W  |  E  |    R     |  T  |                                    |  Y  |  U   |  I  |  O  |  P  |  Å   |
-    // | TAB |  A  |  S  |  D  |    F     |  G  |                                    |  H  |  J   |  K  |  L  |  Ö  |  Ä   |
+    // --------------------------------------------------------------------------------------------------------------------
+    // | ESC |  Q  |  W  |  E  |    R     |  T  |                                    |  Y  |  U   |  I  |  O  |  P  |  Å  |
+    // | TAB |  A  |  S  |  D  |    F     |  G  |                                    |  H  |  J   |  K  |  L  |  Ö  |  Ä  |
     //       |  Z  |  X  |  C  |    V     |  B  |       |        |  |        |       |  N  |  M   |  ,; |  .: |  -  |
     //                         | LWIN/ADJ | LOW | SPACE | LSHIFT |  | RETURN | BKSPC | RAI | PLPA |
     [_QWERTY] = LAYOUT(
@@ -37,11 +40,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                GUI_ADJUST,  LOWER,    KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, MO(_RAISE), KC_MPLY
     ),
 
-    // -----------------------------------------------------------------------------------------------------------------
-    // | ESC |  Q  |  W  |  F  |    P     |  B  |                                    |  J  |  L   |  U  |  Y  |  Ö  |  Å   |
-    // | TAB |  A  |  R  |  S  |    T     |  G  |                                    |  M  |  N   |  E  |  I  |  O  |  Ä   |
-    // |     |  Z  |  X  |  C  |    D     |  V  |       |        |  |        |       |  K  |  H   |  ,; |  .: |  -_ | PLPA |
-    //                   |     | LWIN/ADJ | LOW | SPACE | LSHIFT |  | RETURN | BKSPC | RAI | PLPA |     |
+    // --------------------------------------------------------------------------------------------------------------------
+    // | ESC |  Q  |  W  |  F  |    P     |  B  |                                    |  J  |  L   |  U  |  Y  |  Ö  |  Å  |
+    // | TAB |  A  |  R  |  S  |    T     |  G  |                                    |  M  |  N   |  E  |  I  |  O  |  Ä  |
+    //       |  Z  |  X  |  C  |    D     |  V  |       |        |  |        |       |  K  |  H   |  ,; |  .: |  -_ |
+    //                         | LWIN/ADJ | LOW | SPACE | LSHIFT |  | RETURN | BKSPC | RAI | PLPA |
     [_COLEMAKDH] = LAYOUT(
         KC_ESC,  KC_Q,     KC_W,     KC_F,     KC_P,        KC_B,                                                   KC_J,       KC_L,     KC_U,     KC_Y,     SV_OE,    SV_AO,
         KC_TAB,  H4(KC_A), H3(KC_R), H2(KC_S), H1(KC_T),    KC_G,                                                   KC_M,       H1(KC_N), H2(KC_E), H3(KC_I), H4(KC_O), SV_AE,
@@ -49,11 +52,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                GUI_ADJUST,  LOWER,    KC_SPC,  LSFT_T(KC_CAPS),   KC_ENT,  KC_BSPC, MO(_RAISE), KC_MPLY
     ),
 
+    // ---------------------------------------------------------------------------------------------------------------------
+    // | ESC |   1   |  2  |  3  |  4  |  5  |                            |  6  |  7   |  8  |  9  |  0  | F11 |
+    // | TAB | LSHFT |  A  |  W  |  D  |     |                            |     |      |     |     |     |     |
+    //       | LCTRL |  Q  |  S  |  E  |     |       |     |  |     |     |     |      |     |     |     |
+    //                           |     | LOW | SPACE |     |  |     |     |     | PLPA |
+    [_MINECRAFT] = LAYOUT(
+        KC_ESC,  KC_1,     KC_2,     KC_3,  KC_4,        KC_5,                                              KC_6,      KC_7,     KC_8,     KC_9,     KC_0,      KC_F11,
+        KC_TAB,  KC_LSFT,  KC_A,     KC_W,  KC_D,        XXXXXXX,                                           XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,
+                 KC_LCTL,  KC_Q,     KC_S,  KC_E,        XXXXXXX,                                           XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+                                            GUI_ADJUST,  LOWER,    KC_SPC,  XXXXXXX,   XXXXXXX,  XXXXXXX,   XXXXXXX,   KC_MPLY
+    ),
+
     // --------------------------------------------------------------------------------------------------------
     // |   |  1  |  2  |  3  |  4  |  5  |         #            |  6  |  7  |  8  |  9  |  0  |   |
     // |   |  ?  |  <  |  (  |  {  |  [  |         #            |  :  |  '  |  /  |  `  |  +  |   |
     // |   |  =  |  >  |  )  |  }  |  ]  |   |   | # |   |      |  ;  |  "  |  \  |  ´  |  -  |   |
-    //                 |     |     |     |   |   | # |   | DEL  |     |     |     |
+    //                       |     |     |   |   | # |   | DEL  |     |     |
     [_LOWER] = LAYOUT(
         _______, KC_1,        KC_2,    KC_3,    KC_4,     KC_5,                                          KC_6,       KC_7,       KC_8,         KC_9,        KC_0,    XXXXXXX,
         _______, SV_QUESTION, SV_LESS, SV_LPAR, SV_LBRAC, SV_LBRAK,                                      SV_COLON,   SV_SINGLEQ, SV_SLASH,     SV_BACKTICK, SV_PLUS, XXXXXXX,
@@ -92,8 +107,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                   |     |      |      |   |   |  |   |   |     |        |      |
     [_ADJUST] = LAYOUT(
         _______, XXXXXXX, XXXXXXX, KC_MPLY, KC_MUTE, XXXXXXX,                                        XXXXXXX, XXXXXXX,       RGB_TOG, XXXXXXX, RGB_MODE_PLAIN, XXXXXXX,
-        _______, XXXXXXX, XXXXXXX, KC_MNXT, KC_VOLU, XXXXXXX,                                        XXXXXXX, ROTATE_LAYOUT, RGB_VAI, RGB_HUI, RGB_MOD, XXXXXXX,
-                 XXXXXXX, XXXXXXX, KC_MPRV, KC_VOLD, XXXXXXX,                                        XXXXXXX, XXXXXXX,       RGB_VAD, RGB_HUD, RGB_MODE_SNAKE,
+        _______, XXXXXXX, XXXXXXX, KC_MNXT, KC_VOLU, XXXXXXX,                                        XXXXXXX, TOGGLE_MINECR, RGB_VAI, RGB_HUI, RGB_MOD, XXXXXXX,
+                 XXXXXXX, XXXXXXX, KC_MPRV, KC_VOLD, XXXXXXX,                                        XXXXXXX, ROTATE_LAYOUT, RGB_VAD, RGB_HUD, RGB_MODE_SNAKE,
                                             _______, _______, _______, _______,    _______, _______, _______, _______
     ),
 };
@@ -113,6 +128,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     current_layout == _QWERTY ? _COLEMAKDH
                     : _QWERTY;
                 default_layer_set(1UL << current_layout);
+                return false;
+            }
+            break;
+        case TOGGLE_MINECR:
+            if (record->event.pressed) {
+                is_minecraft = !is_minecraft;
+                default_layer_set(is_minecraft ? 1UL << _MINECRAFT : 1UL << current_layout);
                 return false;
             }
             break;
